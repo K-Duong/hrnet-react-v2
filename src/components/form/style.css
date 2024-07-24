@@ -1,0 +1,57 @@
+.input-wrapper,
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  row-gap: 10px;
+}
+.input-wrapper label,
+.select-wrapper label {
+  align-self: flex-start;
+}
+
+.input-wrapper input,
+.select-wrapper input {
+  background-color: #eef2f5;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.employee-adress {
+  row-gap: 1.25rem;
+  width: 95%;
+}
+.employee-adress .input-wrapper{
+  width: 80%;
+}
+
+.employee-adress .select-state,
+.employee-department .select-department{
+  background-color: #eef2f5;
+  padding: 0.5rem
+}
+
+.employee-department.input-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  width: 100%;
+}
+
+label {
+  font-size: 18px;
+}
+
+/* error message */
+.message-error{
+  color: red;
+  font-size: 12px;
+  align-self: self-start;
+}
+
+/* button */
+.btn-submit{
+  align-self: center;
+  width: 15%;
+}
