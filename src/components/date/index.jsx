@@ -10,7 +10,7 @@ function DateSelector({ id, selected, handleChange }) {
   const years = range(1950, getYear(new Date()) + 1, 1);
   const maxDate = id === "dateOfBirth"
   ? new Date(new Date().setFullYear(new Date().getFullYear() - 18))
-  : null
+  : new Date()
   const months = [
     "January",
     "February",

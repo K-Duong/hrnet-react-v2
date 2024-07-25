@@ -1,0 +1,32 @@
+#logo-footer{
+  width: 50px;
+  border-radius: 20%;
+}
+
+.footer p{
+  font-size: 12px;
+}
+
+.footer a{
+  font-size: 16px
+}
+
+.footer a:hover{
+  text-decoration: underline;
+}
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 15px 100px;
+}
+
+@media screen and (max-width: 765px) {
+  .footer {
+    flex-direction: column;
+    padding: 15px 50px;
+    row-gap: 15px;
+
+  }
+}

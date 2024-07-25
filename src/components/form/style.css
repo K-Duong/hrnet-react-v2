@@ -1,3 +1,28 @@
+/* form's style */
+.form-add-employee{
+  margin-bottom: 50px;
+}
+/* inputs and selects elements */
+@media screen and (max-width: 765px) {
+  .employee-info .inputs-fullName,
+  .employee-info .select-dates{
+    flex-direction: column;
+    row-gap: 1.25rem;
+  }
+  .employee-info .input-wrapper,
+  .employee-info .select-wrapper{
+    width: 100%;
+  }
+  /* TODO: fix bug style */
+  .employee-adress{
+    padding: 0;
+  
+  }
+  .employee-adress-content{
+    padding-bottom: 0.5rem;
+  }
+}
+
 .input-wrapper,
 .select-wrapper {
   display: flex;
@@ -18,8 +43,8 @@
 }
 
 .employee-adress {
-  row-gap: 1.25rem;
   width: 95%;
+  padding: 0.5rem
 }
 .employee-adress .input-wrapper{
   width: 80%;

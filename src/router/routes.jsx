@@ -7,25 +7,11 @@ import HomePage from "../pages/homePage";
 import ErrorPage from "../pages/errorPage";
 import ListOfEmployeePage from "../pages/employeePage";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "",
-        element: <HomePage />,
-      },
-      {
-        path: "/employee-list",
-        element: <ListOfEmployeePage />,
-      },
-    ],
-  },
-]);
-
-function Root() {
+const PATHS = {
+  HOME: "/",
+  EMPLOYEE_LIST: "employee-list"
+}
+const Root = () => {
   return (
     <>
       <Navbar />
@@ -36,3 +22,22 @@ function Root() {
     </>
   );
 }
+export const router = createBrowserRouter([
+  {
+    path: PATHS.HOME,
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: PATHS.EMPLOYEE_LIST,
+        element: <ListOfEmployeePage />,
+      },
+    ],
+  },
+]);
+
+

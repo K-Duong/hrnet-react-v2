@@ -1,25 +1,16 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
+
 import Form from "../../components/form";
 
-// import useEmployeeStore from "../../store/employeesStore";
-
-// import Button from "../../components/button";
-// import InputLayout from "../../layout/input/input";
-// import InputItem from "../../components/inputItem";
-// import SelectItem from "../../components/selectItem";
-// import DateSelector from "../../components/dateSelector";
-
-// import { ConvertTrimedString } from "../../utils/convertString";
+import { getStatesName } from "../../utils/getStates";
 import departments from "../../data/departments";
 import states from "../../data/states";
-import { getStatesName } from "../../utils/getStates";
-
 
 import "./style.css"
-function HomePage() {
 
+function HomePage() {
   const statesList = getStatesName(states);
+  
   return (
     <div className="home-container p-default flex flex-col gap-y-4">
       <header className="flex flex-col gap-y-4 items-center p-default">
