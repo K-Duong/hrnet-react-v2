@@ -8,8 +8,9 @@ export default {
     extend: {},
     colors: {
       "white":  "#FFFFFFff",
-      "sage": "#B4BF8Fff",
-      "avocado": "#5B700Cff",
+      "secondary": "#B4BF8Fff",
+      "primary": "#5B700Cff",
+      "ternary": "#f8faf6",
       "reseda-green": "#6D7554ff",
       "moss-green": "#96A75Aff"
     },

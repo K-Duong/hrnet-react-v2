@@ -12,6 +12,7 @@ import "./style.css";
 function Form({ dataOfStates, dataOfDepartments }) {
   const { register, handleSubmit, control, reset, formState } = useForm({
     defaultValues: {
+      _id: null,
       firstName: "",
       lastName: "",
       startDate: "",
@@ -31,12 +32,9 @@ function Form({ dataOfStates, dataOfDepartments }) {
 
 
   const onSubmit = (data) => {
-    // 1. check validation
-    console.log(data);
-    console.log(errors);
-
+  
     // 2. add new employee to store list
-    addNewEmployee(data)
+    addNewEmployee({...data, _id: Date.now()})
     //3. reset default values:
     console.log("is Submitted:", isSubmitted);
     reset();
@@ -44,7 +42,7 @@ function Form({ dataOfStates, dataOfDepartments }) {
   };
   return (
     <form
-      className="form-add-employee flex flex-col border rounded-md p-5 gap-3"
+      className="form-add-employee flex flex-col border rounded-md p-5 gap-3 bg-white"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="employee-info flex flex-col  w-full gap-5">

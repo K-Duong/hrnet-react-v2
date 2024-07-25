@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-const employeeStore = (set, get) => ({
-  // TODO: to 
+const employeeStore = (set) => ({
+  // TODO: data for testing
   employeeList: [
     {
+      _id: 1,
       firstName: "Khanh",
       lastName: "Trinh",
       startDate: "2014-06-17T22:00:00.000Z",
@@ -16,6 +17,7 @@ const employeeStore = (set, get) => ({
       zipCode: "69100",
     },
     {
+      _id: 2,
       firstName: "Khanh",
       lastName: "Trinh",
       dateOfBirth: "1992-01-05T23:00:00.000Z",
@@ -27,6 +29,7 @@ const employeeStore = (set, get) => ({
       department: "human resources",
     },
     {
+      _id: 3,
       firstName: "John",
       lastName: "Doe",
       startDate: "2024-03-12T23:00:00.000Z",
@@ -38,6 +41,7 @@ const employeeStore = (set, get) => ({
       zipCode: "4321",
     },
     {
+      _id: 4,
       firstName: "Peter",
       lastName: "Parker",
       dateOfBirth: "1992-03-02T23:00:00.000Z",
@@ -49,6 +53,7 @@ const employeeStore = (set, get) => ({
       department: "engineering",
     },
     {
+      _id: 5,
       firstName: "Lucie",
       lastName: "Tran",
       dateOfBirth: "2008-06-29T22:00:00.000Z",
@@ -60,6 +65,7 @@ const employeeStore = (set, get) => ({
       department: "engineering",
     },
     {
+      _id: 6,
       firstName: "Anne",
       lastName: "Hathaway",
       startDate: "2017-07-10T22:00:00.000Z",
@@ -83,62 +89,6 @@ const employeeStore = (set, get) => ({
     }));
   },
 
-  ascendingList: (element) => {
-    const copiedEmployeeList = [...get().employeeList];
-    const sortedList = copiedEmployeeList.sort((obj1, obj2) => {
-      if (element === "dateOfBirth" || element === "startDate") {
-        return new Date(obj1[element]) - new Date(obj2[element]);
-      } else if (element === "state") {
-        return obj1.stateAbbreviation.localeCompare(obj2.stateAbbreviation);
-      } else {
-        return obj1[element].localeCompare(obj2[element]);
-      }
-    });
-    return sortedList;
-  },
-
-  descendingList: (element) => {
-    const copiedEmployeeList = [...get().employeeList];
-    const sortedList = copiedEmployeeList.sort((obj1, obj2) => {
-      if (element === "dateOfBirth" || element === "startDate") {
-        return new Date(obj2[element]) - new Date(obj1[element]);
-      } else if (element === "state") {
-        return obj2.stateAbbreviation.localeCompare(obj1.stateAbbreviation);
-      } else {
-        return obj2[element].localeCompare(obj1[element]);
-      }
-    });
-    return sortedList;
-  },
-
-  filterEmployee: (str, sortedList = []) => {
-    // TODO: revoir l'algo pour filter, pas simplement include mais si string contient les sympboles
-    let filteredList;
-    if(sortedList.length === 0) {
-      console.log("no sorted list")
-      filteredList = [...get().employeeList]
-    } else {
-      console.log("filter from sorted list")
-      filteredList = [...sortedList]
-    }
-    if (str.length > 0) {
-      filteredList = filteredList.filter((employee) =>
-        Object.values(employee).some((value) =>
-          value.toLowerCase().includes(str)
-        )
-      );
-    } else {
-      filteredList = [];
-    }
-    console.log(filteredList);
-    return filteredList ;
-  },
-
-  clearFilter: () => {
-    set((state) => {
-      return (state.filteredList = []);
-    });
-  },
 });
 
 const useEmployeeStore = create(
