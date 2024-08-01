@@ -29,13 +29,14 @@ function Form({ dataOfStates, dataOfDepartments }) {
 
   const addNewEmployee = useEmployeeStore((state) => state.addNewEmployee);
 
-  const { errors, isValid, isSubmitted } = formState;
+  const { errors, isValid, isSubmitted, isSubmitSuccessful } = formState;
 
   const handleCloseModal = () => setOpenedModal(false);
 
   useEffect(() => {
     const initForm = () => {
-      if (isValid && isSubmitted) {
+      //TODO: fix bug modal ouvert après avoir saisi tous les inputs --> rajouter isSubmitSuccessful dans la condition
+      if (isValid && isSubmitted && isSubmitSuccessful) {
         console.log("is Submitted :", isSubmitted);
         console.log("init form");
         reset();
@@ -44,7 +45,7 @@ function Form({ dataOfStates, dataOfDepartments }) {
     };
     initForm();
     console.log("is Submitted :", isSubmitted);
-  }, [isSubmitted, reset, isValid]);
+  }, [isSubmitted, reset, isSubmitSuccessful, isValid]);
 
   const onSubmit = (data) => {
     addNewEmployee({ ...data, _id: Date.now() });
