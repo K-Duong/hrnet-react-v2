@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 import Button from "../button";
-import SelectItem from "../selectItem";
+import { SelectItem } from "my-lib-select-list";
 import DateSelector from "../date";
 import ModalSucessMessage from "../modal";
 
@@ -12,45 +12,44 @@ import "./style.css";
 
 function Form({ dataOfStates, dataOfDepartments }) {
   const [openedModal, setOpenedModal] = useState(false);
+  const defaultValues = {
+    _id: null,
+    firstName: "",
+    lastName: "",
+    startDate: "",
+    department: dataOfDepartments[0].value,
+    dateOfBirth: "",
+    street: "",
+    city: "",
+    state: dataOfStates[0].value,
+    zipCode: 0,
+  };
+
   const { register, handleSubmit, control, reset, formState } = useForm({
-    defaultValues: {
-      _id: null,
-      firstName: "",
-      lastName: "",
-      startDate: "",
-      department: "",
-      dateOfBirth: "",
-      street: "",
-      city: "",
-      state: "",
-      zipCode: 0,
-    },
+    defaultValues,
   });
-
-  const addNewEmployee = useEmployeeStore((state) => state.addNewEmployee);
-
+  
   const { errors, isValid, isSubmitted, isSubmitSuccessful } = formState;
+  
+  const addNewEmployee = useEmployeeStore((state) => state.addNewEmployee);
 
   const handleCloseModal = () => setOpenedModal(false);
 
   useEffect(() => {
     const initForm = () => {
-      //TODO: fix bug modal ouvert après avoir saisi tous les inputs --> rajouter isSubmitSuccessful dans la condition
       if (isValid && isSubmitted && isSubmitSuccessful) {
-        console.log("is Submitted :", isSubmitted);
-        console.log("init form");
-        reset();
+        reset(defaultValues);
         setOpenedModal(true);
       }
     };
     initForm();
-    console.log("is Submitted :", isSubmitted);
   }, [isSubmitted, reset, isSubmitSuccessful, isValid]);
 
   const onSubmit = (data) => {
     addNewEmployee({ ...data, _id: Date.now() });
     return;
   };
+  
   return (
     <>
       <form
@@ -188,7 +187,7 @@ function Form({ dataOfStates, dataOfDepartments }) {
                       const newValue = Number(v);
                       return (
                         (newValue > 0 && Number.isInteger(newValue)) ||
-                        "Zip code should be an integer number"
+                        "Enter a correct zip code"
                       );
                     },
                   },
@@ -204,18 +203,22 @@ function Form({ dataOfStates, dataOfDepartments }) {
                 control={control}
                 name="state"
                 rules={{
-                  required: { value: true, message: "Select an option" },
+                  required: { value: true, message: "Select a state" },
+                  validate: (val) =>
+                    val !== defaultValues.state || "Select a state",
                 }}
-                render={({ field: { onChange, value, name } }) => (
-                  <SelectItem
-                    className={"select-state"}
-                    label={"States"}
-                    value={value}
-                    handleSelect={onChange}
-                    name={name}
-                    options={dataOfStates}
-                  />
-                )}
+                render={({ field: { onChange, value, name } }) => {
+                  return (
+                    <SelectItem
+                      className={"select-state"}
+                      selectedOption={value}
+                      label={"State"}
+                      handleSelect={onChange}
+                      name={name}
+                      options={dataOfStates}
+                    />
+                  );
+                }}
               />
               {errors.state && (
                 <span className="message-error">{errors.state.message}</span>
@@ -227,12 +230,16 @@ function Form({ dataOfStates, dataOfDepartments }) {
           <Controller
             control={control}
             name="department"
-            rules={{ required: { value: true, message: "Select an option" } }}
+            rules={{
+              required: { value: true, message: "Select a department" },
+              validate: (val) =>
+                val !== defaultValues.department || "Select an department",
+            }}
             render={({ field: { onChange, value, name } }) => (
               <SelectItem
                 className={"select-department"}
                 label={"Department"}
-                value={value}
+                selectedOption={value}
                 handleSelect={onChange}
                 name={name}
                 options={dataOfDepartments}
@@ -248,7 +255,6 @@ function Form({ dataOfStates, dataOfDepartments }) {
           type={"submit"}
           className={"btn-submit"}
           handleClick={handleSubmit(onSubmit)}
-          // disabled={!isValid}
         >
           Save
         </Button>

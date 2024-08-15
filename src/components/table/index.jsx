@@ -5,7 +5,6 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { dateFormater } from "../../utils/dateFormater";
 
 import useEmployeeStore from "../../store/employeesStore";
-import "./style.css"
 
 function TableList() {
   const [paginationModel, setPaginationModel] = useState({
@@ -75,13 +74,11 @@ function TableList() {
   return (
     <Box
       sx={{
-        // TODO: media query for heigh
         maxHeight:450,
         width: "100%",
-        // height: 600,
         "& .data-header": {
           backgroundColor: "#B4BF8Fff",
-          fontSize: "16px",
+          fontSize: "18px",
           color: "black"
         },
       }}

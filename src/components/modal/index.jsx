@@ -4,7 +4,6 @@ import Button from "../button";
 import "./style.css";
 
 function ModalSucessMessage({ handleClose }) {
-  console.log("modal is opened");
   return (
     <Modal
       sx={{
@@ -32,7 +31,6 @@ function ModalSucessMessage({ handleClose }) {
           pb: "20px"
         }}
       >
-        {/* <div className="modal-content"> */}
           <h2 id="modal-title">Congratulation!</h2>
           <p id="modal-description">Employee created!</p>
           <Button
@@ -42,7 +40,6 @@ function ModalSucessMessage({ handleClose }) {
           >
             Close
           </Button>
-        {/* </div> */}
       </Box>
     </Modal>
   );

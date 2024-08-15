@@ -13,7 +13,6 @@
   .employee-info .select-wrapper{
     width: 100%;
   }
-  /* TODO: fix bug style */
   .employee-adress{
     padding: 0;
   
@@ -70,7 +69,7 @@ label {
 
 /* error message */
 .message-error{
-  color: red;
+  color: #B71C1C;
   font-size: 12px;
   align-self: self-start;
 }

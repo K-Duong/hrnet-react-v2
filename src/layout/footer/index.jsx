@@ -15,11 +15,6 @@ function Footer() {
         <Link to={"/"}>About</Link>
         <Link to={"/"}>Contact</Link>
         <Link to={"/"}>FAQ</Link>
-
-
-          {/* <h1 className="rejoignez-vous-text text-primary font-bold">
-            Rejoignez-nous
-          </h1> */}
       </ul>
     </footer>
   );

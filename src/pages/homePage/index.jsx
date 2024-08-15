@@ -2,15 +2,41 @@ import { Link } from "react-router-dom";
 
 import Form from "../../components/form";
 
-import { getStatesName } from "../../utils/getStates";
 import departments from "../../data/departments";
 import states from "../../data/states";
 
-import "./style.css"
+import "./style.css";
 
 function HomePage() {
-  const statesList = getStatesName(states);
-  
+  // convert format of states and departements {label, value}
+  const dataStates = [
+    {
+      label: "Select a state...",
+      value: "DEFAULT",
+      disabled: true,
+    },
+    ...states.map((state) => {
+      return {
+        label: state.name,
+        value: state.abbreviation,
+      };
+    }),
+  ];
+
+  const dataDepartments = [
+    {
+      label: "Select a department...",
+      value: "DEFAULT",
+      disabled: true,
+    },
+    ...departments.map((department) => {
+      return { 
+        label: department, 
+        value: department.toLowerCase(), 
+      };
+    }),
+  ];
+
   return (
     <div className="home-container p-default flex flex-col gap-y-4">
       <header className="flex flex-col gap-y-4 items-center p-default">
@@ -18,9 +44,9 @@ function HomePage() {
         <Link to="/employee-list">View Current Employees</Link>
         <h2 className="font-bold text-2xl">Create Employee</h2>
       </header>
-      <Form dataOfStates={statesList} dataOfDepartments={departments}/>
+      <Form dataOfStates={dataStates} dataOfDepartments={dataDepartments} />
     </div>
   );
 }
 
-export default HomePage
+export default HomePage;

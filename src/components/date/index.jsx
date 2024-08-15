@@ -7,10 +7,27 @@ import { getMonth } from "date-fns/getMonth";
 import "react-datepicker/dist/react-datepicker.css";
 
 function DateSelector({ id, selected, handleChange }) {
-  const years = range(1950, getYear(new Date()) + 1, 1);
-  const maxDate = id === "dateOfBirth"
-  ? new Date(new Date().setFullYear(new Date().getFullYear() - 18))
-  : new Date()
+  const currentDate = new Date();
+
+  let newYear = currentDate.getFullYear();
+  let newMonth = currentDate.getMonth() + 6;
+  if (newMonth > 11) {
+    newYear += 1;
+    newMonth -= 12;
+  }
+  const years = range(1950, newYear + 1, 1);
+  //set the value of max date 
+  ///- For "dateOfBirth", the employee must be at least 18 years old 
+  ///- For "startDate", the date must be available 6 months from now 
+  const maxDate =
+    id === "dateOfBirth"
+      ? new Date(
+          currentDate.getFullYear() - 18,
+          currentDate.getMonth(),
+          currentDate.getDate()
+        )
+      : new Date(newYear, newMonth, currentDate.getDate());
+ 
   const months = [
     "January",
     "February",
