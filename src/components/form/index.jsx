@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 import Button from "../button";
-import { SelectItem } from "my-lib-select-list";
+import { SelectItem } from "kduong-react-select";
 import DateSelector from "../date";
 import ModalSucessMessage from "../modal";
 
@@ -49,7 +49,7 @@ function Form({ dataOfStates, dataOfDepartments }) {
     addNewEmployee({ ...data, _id: Date.now() });
     return;
   };
-  
+
   return (
     <>
       <form
