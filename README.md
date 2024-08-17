@@ -12,7 +12,7 @@ HRnet is an internal web application developed for Wealth Health society for man
 - [React v18.3.1](https://www.npmjs.com/package/react)
 - [Vite v5.3.4](https://www.npmjs.com/package/vite/v/5.3.4)
 
-Additionally, the project uses libraries such as Material-UI (MUI) and React Datepicker. I have also created and imported a custom library, [KDuong-select-lib](#), and invite you to test and contribute to its development.
+Additionally, the project uses libraries such as Material-UI (MUI) and React Datepicker. I have also created and imported a custom library, [KDuong-select-lib](https://github.com/K-Duong/duong-k-select).
 
 ## Instructions
 1. Fork this repository: [hrnet-react-v2](https://github.com/K-Duong/hrnet-react-v2.git)
