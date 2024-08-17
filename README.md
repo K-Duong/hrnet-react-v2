@@ -33,7 +33,7 @@ Additionally, the project uses libraries such as Material-UI (MUI) and React Dat
 5. You can visit the older jQuery version of the project [here](https://github.com/OpenClassrooms-Student-Center/P12_Front-end)
 
 ## Demo
-You can test the application via [this link](https://hrnet-kduong.netlify.app/employee-list).
+You can test the application via [this link](https://hrnet-kduong.netlify.app/).
 
 
 
